@@ -18,6 +18,10 @@ class DarkSkyService
       end
 
       def longitude
-        @location["lng"]
+        if @location["lng"]
+          @location["lng"]
+        elsif @location["long"]
+          @location["long"]
+        end
       end
 end
