@@ -14,10 +14,10 @@ class DarkSkyService
       end
 
       def latitude
-        @location["lat"]
+        @location.latitude
       end
 
       def longitude
-        @location["lng"]
+        @location.longitude
       end
 end
