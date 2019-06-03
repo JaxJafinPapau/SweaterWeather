@@ -20,6 +20,13 @@ class WeatherFacade
     end
   end
 
+  def daily_forecast
+    dailies = dark_sky.weather['daily']['data'].first(5)
+    dailies.map do |daily|
+      DailyWeather.new(daily)
+    end
+  end
+
   private
 
     def google

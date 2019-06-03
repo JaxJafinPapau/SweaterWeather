@@ -3,5 +3,6 @@ class WeatherSerializer
   attributes :id,
              :current_weather,
              :details,
-             :hourly_forecast
+             :hourly_forecast,
+             :daily_forecast
 end
