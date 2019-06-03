@@ -4,7 +4,6 @@ class GoogleReverseGeocodingService
   end
 
   def reverse_geocode
-    binding.pry
     get_json['results'].first['formatted_address']
   end
 
