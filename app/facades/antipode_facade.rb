@@ -12,7 +12,7 @@ class AntipodeFacade
   private
 
     def google
-      @_location ||= GoogleGeocodingService.new(@params[:location])
+      @_location ||= GoogleGeocodingService.new(@params[:loc])
     end
 
     def amypode
@@ -20,7 +20,7 @@ class AntipodeFacade
     end
 
     def antipode_text_location
-      @_antipode_text_location ||= GoogleGeocodingService.new(amypode.location)
+      @_antipode_text_location ||= GoogleReverseGeocodingService.new(amypode.location)
     end
 
     def dark_sky
