@@ -3,8 +3,12 @@ class GoogleGeocodingService
     @location = location
   end
 
-  def location
+  def lat_long_location
     get_json['results'].first['geometry']['location']
+  end
+
+  def user_formatted_location
+    get_json['results'].first['formatted_address']
   end
 
   private
