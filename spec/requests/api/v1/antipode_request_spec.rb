@@ -9,12 +9,11 @@ describe 'Antipode end point' do
     weather = JSON.parse(response.body)
     expect(weather['data']).to be_truthy
     current_weather = weather['data']['attributes']['antipode_weather']
-    expect(current_weather['summary']).to be_a(String)
-    expect(current_weather['temperature']).to be_a(Numeric)
-    expect(current_weather['daily_high']).to be_a(Numeric)
-    expect(current_weather['daily_low']).to be_a(Numeric)
-    expect(current_weather['location']).to be_a(String)
-    expect(current_weather['datetime']).to be_a(String)
+    expect(current_weather['location_name']).to be_a(String)
+    expect(current_weather['forecast']).to be_a(Hash)
+    expect(current_weather['forecast']['summary']).to be_a(String)
+    expect(current_weather['forecast']['current_temperature']).to be_a(Numeric)
+    expect(current_weather['search_location']).to be_a(String)
   end
 end
 #

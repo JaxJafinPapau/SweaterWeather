@@ -6,7 +6,7 @@ class AntipodeFacade
   end
 
   def antipode_weather
-    CurrentWeather.new(dark_sky.weather, antipode_text_location.reverse_geocode)
+    AntipodeWeather.new(parsed_weather, antipode_text_location.reverse_geocode, @params[:loc])
   end
 
   private
@@ -25,5 +25,13 @@ class AntipodeFacade
 
     def dark_sky
       @_weather ||= DarkSkyService.new(amypode.location)
+    end
+
+    def parsed_weather
+      weather = dark_sky.weather
+      {
+        'summary' => weather['currently']['summary'],
+        'current_temperature' => weather['currently']['temperature']
+      }
     end
 end
