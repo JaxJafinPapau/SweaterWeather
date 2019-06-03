@@ -6,7 +6,7 @@ class WeatherFacade
   end
 
   def current_weather
-    CurrentWeather.new(dark_sky.weather, google.user_formatted_location)
+    CurrentWeather.new(dark_sky.weather, location.strf_description)
   end
 
   def details
@@ -34,6 +34,21 @@ class WeatherFacade
     end
 
     def dark_sky
-      @_weather ||= DarkSkyService.new(google.lat_long_location)
+      @_weather ||= DarkSkyService.new(location)
+    end
+
+    def location
+      city = City.find_by(name: city_description[0], state: city_description[1])
+      return city if city
+      City.create(name: city_description[0],
+                  state: city_description[1],
+                  latitude: google.lat_long_location['lat'],
+                  longitude: google.lat_long_location['lng'],
+                  strf_description: google.user_formatted_location
+                 )
+    end
+
+    def city_description
+      @params[:location].split(",")
     end
 end
