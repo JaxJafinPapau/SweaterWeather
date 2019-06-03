@@ -9,6 +9,17 @@ class WeatherFacade
     CurrentWeather.new(dark_sky.weather, google.user_formatted_location)
   end
 
+  def details
+    WeatherDetails.new(dark_sky.weather)
+  end
+
+  def hourly_forecast
+    hourlies = dark_sky.weather['hourly']['data'].first(8)
+    hourlies.map do |hourly|
+      HourlyWeather.new(hourly)
+    end
+  end
+
   private
 
     def google
