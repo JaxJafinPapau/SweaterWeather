@@ -7,8 +7,7 @@ describe 'Weather API' do
     get "/api/v1/forecast?location=denver,co"
 
     expect(response).to be_successful
-
-    weather = JSON.parse(response)
-    expect(weather[:data]).to be_truthy
+    weather = JSON.parse(response.body)
+    expect(weather['data']).to be_truthy
   end
 end
