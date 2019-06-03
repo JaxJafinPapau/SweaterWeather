@@ -6,9 +6,10 @@ class BackgroundsFacade
   end
 
   def backgrounds
-    flickr.backgrounds['photos']['photo'].map do |photo|
+    background_collection = flickr.backgrounds['photos']['photo'].map do |photo|
       Background.new(photo)
     end
+    background_collection.sample.url
   end
 
   private
