@@ -16,7 +16,7 @@ describe 'Weather API' do
     expect(response).to be_successful
     expect(response.status).to be(201)
     raw_key = JSON.parse(response.body)
-    expect(raw_key['api_key']).to be_a(String)
+    expect(raw_key['data']['attributes']['api_key']).to be_a(String)
   end
 end
 
