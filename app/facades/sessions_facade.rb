@@ -10,6 +10,7 @@ class SessionsFacade
   end
 
   def user
-    User.find_by(email: @params[:email])
+    user = User.find_by(email: @params[:email])
+    user if user.authenticate(@params[:password])
   end
 end
