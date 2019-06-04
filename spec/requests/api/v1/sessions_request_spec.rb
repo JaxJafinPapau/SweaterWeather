@@ -6,8 +6,8 @@ describe 'Weather API' do
                       "email": "whatever@example.com",
                    "password": "password"
     }.to_json
-    
-    create(:user, email: test_user_data['email'], password: test_user_data['password'], api_key: '12345')
+
+    create(:user, email: "whatever@example.com", password: "password", api_key: '12345')
 
     headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -16,6 +16,6 @@ describe 'Weather API' do
     expect(response).to be_successful
     expect(response.status).to be(200)
     raw_key = JSON.parse(response.body)
-    expect(raw_key['data']['attributes']['api_key']).to be('12345')
+    expect(raw_key['data']['attributes']['api_key']).to eq('12345')
   end
 end
