@@ -19,10 +19,3 @@ describe 'Weather API' do
     expect(raw_key['data']['attributes']['api_key']).to be_a(String)
   end
 end
-
-
-# it "creates a Widget and redirects to the Widget's page" do
-#     headers = { "CONTENT_TYPE" => "application/json" }
-#     post "/widgets", :params => '{ "widget": { "name":"My Widget" } }', :headers => headers
-#     expect(response).to redirect_to(assigns(:widget))
-#   end
