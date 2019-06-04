@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe 'Dark Sky Service' do
   it 'should retrieve weather data when given a lat/long' do
-    location = {
-                "lat" => "39.7392358",
-                "lng" => "-104.990251"
-              }
+    location = create(:city, name: "denver", state: "co", latitude: 39.7392358, longitude: -104.990251)
 
     response = DarkSkyService.new(location)
     weather = response.weather
