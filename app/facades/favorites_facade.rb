@@ -8,6 +8,7 @@ class FavoritesFacade
   def favorites
     return create_favorite if @params[:action] == 'create'
     return list_favorites if @params[:action] == 'index'
+    return delete_favorite if @params[:action] == 'destroy'
   end
 
   private
@@ -35,5 +36,11 @@ class FavoritesFacade
 
     def dark_sky(city)
       @_weather ||= DarkSkyService.new(city)
+    end
+
+    def delete_favorite
+      favorite = user.favorites.find_by(city_id: @params[:location])
+      user.favorites.delete(favorite)
+      { message: "Favorite successfully deleted."}
     end
 end
