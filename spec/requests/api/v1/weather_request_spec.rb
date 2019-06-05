@@ -9,5 +9,11 @@ describe 'Weather API' do
     expect(response).to be_successful
     weather = JSON.parse(response.body)
     expect(weather['data']).to be_truthy
+    expect(weather['data']['attributes']['current_weather']).to be_a(Hash)
+    expect(weather['data']['attributes']['current_weather']['summary']).to be_a(String)
+    expect(weather['data']['attributes']['current_weather']['temperature']).to be_a(Numeric)
+    expect(weather['data']['attributes']['details']['summary']).to be_a(String)
+    expect(weather['data']['attributes']['details']['feels_like']).to be_a(Numeric)
+    expect(weather['data']['attributes']['hourly_forecast'].first['temperature']).to be_a(Numeric)
   end
 end
