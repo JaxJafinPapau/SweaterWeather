@@ -17,7 +17,7 @@ describe 'Weather API' do
 
     test_favorites_data = {
       "api_key": user.api_key
-    }.to_json
+    }
 
     get "/api/v1/favorites", params: test_favorites_data, headers: headers
 
