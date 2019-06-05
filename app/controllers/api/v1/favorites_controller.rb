@@ -9,7 +9,7 @@ class Api::V1::FavoritesController < ApiBaseController
   end
 
   def index
-    if current_user && current_user.api_key == get_params[:api_key]
+    if User.find_by(api_key: params[:api_key])
       facade = FavoritesFacade.new(get_params)
       render status: 200, json: FavoritesSerializer.new(facade)
     else
@@ -33,9 +33,10 @@ class Api::V1::FavoritesController < ApiBaseController
     end
 
     def get_params
-      gp = params.permit(:action)
-      raw_key = JSON.parse(params.keys.first)
-      gp[:api_key] = raw_key['api_key']
-      gp
+      params.permit(:api_key, :action)
+      # gp = params.permit(:action)
+      # raw_key = JSON.parse(params.keys.first)
+      # gp[:api_key] = raw_key['api_key']
+      # gp
     end
 end
