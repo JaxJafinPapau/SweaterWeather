@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < ApplicationController
+class Api::V1::SessionsController < ApiBaseController
   def create
     facade = SessionsFacade.new(user_params)
     if facade.user

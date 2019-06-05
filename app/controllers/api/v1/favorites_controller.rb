@@ -1,4 +1,4 @@
-class Api::V1::FavoritesController < ApplicationController
+class Api::V1::FavoritesController < ApiBaseController
   def create
     if current_user
       facade = FavoritesFacade.new(favorite_params)
