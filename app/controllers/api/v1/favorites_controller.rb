@@ -1,7 +1,7 @@
 class Api::V1::FavoritesController < ApplicationController
   def create
     if current_user
-      facade = FavoritesFacade.new(new_favorite_params)
+      facade = FavoritesFacade.new(favorite_params)
       render status: 200, json: FavoritesSerializer.new(facade)
     else
       render status: 401
@@ -17,9 +17,18 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user && current_user.api_key == favorite_params[:api_key]
+      facade = FavoritesFacade.new(favorite_params)
+      render status: 200, json: FavoritesSerializer.new(facade)
+    else
+      render status: 401
+    end
+  end
+
   private
 
-    def new_favorite_params
+    def favorite_params
       params.permit(:location, :api_key, :action)
     end
 
