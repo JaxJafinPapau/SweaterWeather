@@ -1,6 +1,6 @@
 class Api::V1::FavoritesController < ApiBaseController
   def create
-    if current_user
+    if valid_user
       facade = FavoritesFacade.new(favorite_params)
       render status: 200, json: FavoritesSerializer.new(facade)
     else
@@ -9,7 +9,7 @@ class Api::V1::FavoritesController < ApiBaseController
   end
 
   def index
-    if User.find_by(api_key: params[:api_key])
+    if valid_user
       facade = FavoritesFacade.new(get_params)
       render status: 200, json: FavoritesSerializer.new(facade)
     else
@@ -18,7 +18,7 @@ class Api::V1::FavoritesController < ApiBaseController
   end
 
   def destroy
-    if current_user && current_user.api_key == favorite_params[:api_key]
+    if valid_user
       facade = FavoritesFacade.new(favorite_params)
       render status: 200, json: FavoritesSerializer.new(facade)
     else
@@ -27,6 +27,10 @@ class Api::V1::FavoritesController < ApiBaseController
   end
 
   private
+
+    def valid_user
+      User.find_by(api_key: params[:api_key])
+    end
 
     def favorite_params
       params.permit(:location, :api_key, :action)
