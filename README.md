@@ -1,4 +1,6 @@
-# Sweater Weather is a RESTful JSON API with endpoints that produce weather data to be consumed by a hypothetical front end. It consumes the Dark Sky API for gathering weather data, parses it and returns only what is expected in the project specifications. Location data is parsed from a user friendly city, address, or location by Google Cloud Service's Geocoding API into latitude and longitude. User authentication and location favoriting end points are provided, but not listed here.
+# Sweater Weather
+
+A RESTful JSON API with endpoints that produce weather data to be consumed by a hypothetical front end. It consumes the Dark Sky API for gathering weather data, parses it and returns only what is expected in the project specifications. Location data is parsed from a user friendly city, address, or location by Google Cloud Service's Geocoding API into latitude and longitude. User authentication and location favoriting end points are provided, but not listed here.
 
 
 GET https://mighty-falls-25575.herokuapp.com/api/v1/forecast?location=denver,co
